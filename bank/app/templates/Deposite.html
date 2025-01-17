@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA-BANK</title>
+    <style>
+         *{
+    /* margin: 0; */
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+nav{
+    background-color: black;
+    margin: 0;
+    height: 10vh;
+    width: 100%;
+    color: #fff;
+    margin-top: 0;
+    align-items: center;
+    display: flex;
+    gap:400px;
+   
+}
+nav div{
+   font-weight: 600;
+   font-size: 30px;
+   font-style:inherit;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content:flex-start;
+    padding-left: 20px;
+    gap: 50px;
+    align-content: center;
+    padding-top: 15px ;
+    
+    justify-content: center; }
+
+
+nav ul li:hover{
+    border: 3px solid #fff;
+    border-radius: 5px;
+    background-color:blue;
+    padding: 3px;
+}
+nav ul  a{
+    color: #fff;
+  
+    text-decoration: none;
+} 
+.section{
+    background-image: url('../static/css/images/stcock\ clock.webp');
+    text-align: center;
+    height: 90vh;
+    background-position: left;
+    background-repeat: no-repeat;
+background-size: 990px;
+background-color: rgba(9, 8, 8,0.3);
+width: 70%;
+
+}
+.section section{
+    margin-left: 55%;
+}
+.section form{
+    margin-top: 30px;
+    padding: 10px;
+    height: 150px;
+    display: inline-block;
+    /* border: 4px solid blue; */
+    background-color: rgba(12, 11, 11,0.3);
+    
+}
+.section form div{
+    margin-bottom: 5px;
+}
+.section form div label{
+    font-weight: 600;
+}
+#deposite-btn{
+    background-color: rgba(15, 15, 250,0.3);
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 52px;
+    font-weight: 900;
+}
+#deposite-btn:hover{
+    border: 3px solid #fff;
+    color: red;
+}
+body {
+    font-family: Arial, sans-serif;
+    /* padding: 20px; */
+}
+.sec2{
+    position: absolute;
+    margin-top: -90vh;
+    margin-left: 70%;
+    height: 90vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid; */
+}
+.sec2 img{
+    width: 400px;
+    height: 450px;
+}
+
+
+    </style>
+</head>
+<body>
+    <nav><div>ALPHA-BANK</div>
+        <ul>
+            <li><a href="1">Home</a></li>
+            <li><a href="2">Create-Account</a></li>
+            <li><a href="3">Deposite</a></li>
+            <li><a href="4">Payments</a></li>
+          
+            <li><a href="5">Pin-Generation</a></li>
+              <li><a href="6">About</a></li>
+        </ul>
+        
+    </nav>
+<main>
+<section class="section">
+        <section>
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+    <div>
+        <strong><label for="">Account Number :</label></strong>
+        <input type="number" name="account_no">
+    </div>
+    
+    <div>
+        <strong><label for="">Deposite_Amount :</label></strong>
+        <input type="number" name="balance">
+    </div>
+    <div>
+        <strong><label for="">Enter Your PIN :</label></strong>
+        <input type="number" name="pin_no">
+    </div>
+    
+        <button type="submit" name="ADD" id="deposite-btn">Deposite Amount</button>
+    </form>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <!-- <div>
+        <label for="">pin</label>
+        <input type="number" name="pin">
+    </div> -->
+    <!-- <div>
+        <label for="">first_name</label>
+        <input type="text" name="f">
+    </div>
+    <div>
+        <label for="">last_name</label>
+        <input type="text" name="l">
+    </div> -->
+</section>
+</section>
+<section class="sec2">
+    <img src="../static/css/images/currency.webp" alt="">
+    <img src="../static/css/images/currencysave.webp" alt="">
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA-BANK</title>
+    <style>
+        *{
+   /* margin: 0; */
+   margin-top: 0;
+   margin-left: 0;
+   margin-right: 0;
+   padding: 0;
+}
+nav{
+   background-color: black;
+   margin: 0;
+   height: 10vh;
+   width: 100%;
+   color: #fff;
+   margin-top: 0;
+   align-items: center;
+   display: flex;
+   gap:400px;
+  
+}
+nav div{
+  font-weight: 600;
+  font-size: 30px;
+  font-style:inherit;
+}
+nav ul{
+   list-style: none;
+   display: flex;
+   justify-content:flex-start;
+   padding-left: 20px;
+   gap: 50px;
+   align-content: center;
+   padding-top: 15px ;
+   
+   justify-content: center; }
+
+
+nav ul li:hover{
+   border: 3px solid #fff;
+   border-radius: 5px;
+   background-color:blue;
+   padding: 3px;
+}
+nav ul  a{
+   color: #fff;
+ 
+   text-decoration: none;
+} 
+body{
+    background : linear-gradient(to top ,  rgba(249, 79, 27, 0.3),rgba(90, 233, 123, 0.4),rgba(221, 8, 210, 0.4));
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    /* padding: 20px; */
+    height: 100%;
+}
+.sub-sec {
+    margin-left: 30%;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.4); /* Glassy effect */
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* Glassy blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* margin: 20px; */
+    
+}
+
+/* Header style */
+h2 {
+    font-size: 24px;
+    color: #0a0a0a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Paragraph text style */
+p {
+    font-size: 16px;
+    color: #060606;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form elements */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight background to enhance readability */
+    color: #333;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+    border-color: #6e7dff;
+    outline: none;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Submit button */
+button {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #6e7dff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #556bd2;
+}
+
+/* Label styling */
+label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f0e0e;
+}
+#section{
+    height: 90vh;
+   
+    /* text-align: center; */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .sub-sec {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+
+</style>
+</head>
+<body>
+    <nav><div>ALPHA-BANK</div>
+        <ul>
+            <li><a href="1">Home</a></li>
+            <li><a href="2">Create-Account</a></li>
+            <li><a href="3">Deposite</a></li>
+            <li><a href="4">Payments</a></li>
+          
+            <li><a href="5">Pin-Generation</a></li>
+              <li><a href="6">About</a></li>
+        </ul>
+        
+    </nav>
+<section id="section">
+
+{% if otp_sent %}
+<section class="sub-sec">
+<p>An OTP has been sent to your email. Please check your inbox and enter the OTP below.</p>
+    <!-- OTP verification form  -->
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="pin_gen" value="acc2">
+        <div>
+            <label for="">Enter OTP:</label>
+            <input type="number" name="otp" placeholder="Enter OTP" required min="1000" max="9999">
+        </div>
+        <button type="submit">Verify OTP</button>
+    </form>
+</section>
+{% elif otp_verified %}
+<section class="sub-sec">
+    <p>OTP verified successfully. Please enter a new PIN.</p>
+     <!-- Pin update form -->
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="pin_gen" value="acc3">
+        <div>
+            <label for="">New PIN:</label>
+            <input type="number" name="pin1" placeholder="Enter New PIN" required min="1000" max="9999">
+        </div>
+        <button type="submit">Update PIN</button>
+    </form>
+
+</section>
+{% else %}
+<section class="sub-sec">
+<h2>Pin Generation</h2>
+<p>Enter your details to receive OTP and generate a new PIN.</p>
+    <!-- Form for entering account details to receive OTP -->
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="pin_gen" value="acc1">
+        <div>
+            <label for="">First Name:</label>
+            <input type="text" name="first_name" placeholder="Enter First Name" required>
+        </div>
+        <div>
+            <label for="">Last Name:</label>
+            <input type="text" name="last_name" placeholder="Enter Last Name" required>
+        </div>
+        <div>
+            <label for="">Account Number:</label>
+            <input type="text" name="account_no" placeholder="Enter Account Number" required>
+        </div>
+        <div>
+            <label for="">Email:</label>
+            <input type="email" name="email_id" placeholder="Enter Email" required>
+        </div>
+        <button type="submit">Send OTP</button>
+    </form>
+
+</section>
+
+{% endif %}
+<!-- Show error message if the account was not found or OTP is incorrect --> 
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<!-- Success message when PIN is updated -->
+ {% if success %}
+    <p style="color: green;">{{ success }}</p>
+{% endif %} 
+</section>
+
+    <!-- <h2>Pin Generation</h2>
+
+{% if otp_sent %}
+    <p>An OTP has been sent to your email. Please check your inbox and enter the OTP below.</p>-->
+     <!-- OTP verification form  -->
+    <!-- <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="otp">Enter OTP:</label>
+            <input type="number" name="otp" placeholder="Enter OTP" required min="1000" max="9999">
+        </div>
+        <button type="submit">Verify OTP</button>
+    </form>
+{% elif otp_verified %}
+    <p>OTP verified successfully. Please enter a new PIN.</p> -->
+    <!-- Pin update form -->
+    <!-- <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="pin">New PIN:</label>
+            <input type="number" name="pin" placeholder="Enter New PIN" required min="1000" max="9999">
+        </div>
+        <button type="submit">Update PIN</button>
+    </form>
+{% else %}
+    <p>Enter your details to receive OTP and generate a new PIN.</p> -->
+    <!-- Form for entering account details to receive OTP -->
+    <!-- <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="">First Name:</label>
+            <input type="text" name="first_name" placeholder="Enter First Name" required>
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" placeholder="Enter Last Name" required>
+        </div>
+        <div>
+            <label for="account_no">Account Number:</label>
+            <input type="text" name="account_no" placeholder="Enter Account Number" required>
+        </div>
+        <div>
+            <label for="email_id">Email:</label>
+            <input type="email" name="email_id" placeholder="Enter Email" required>
+        </div>
+        <button type="submit">Send OTP</button>
+    </form>
+{% endif %} -->
+
+<!-- Show error message if the account was not found or OTP is incorrect -->
+<!-- {% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %} -->
+
+<!-- Success message when PIN is updated -->
+<!-- {% if success %}
+    <p style="color: green;">{{ success }}</p>
+{% endif %} --> 
+
+
+
+</body>
+</html>
+
+
+ <!-- Add your CSS file if necessary -->
+
+
+   
+

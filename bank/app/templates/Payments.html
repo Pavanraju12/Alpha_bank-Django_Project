@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA-BANK</title>
+    <style>
+        *{
+    /* margin: 0; */
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+nav{
+    background-color: black;
+    margin: 0;
+    height: 10vh;
+    width: 100%;
+    color: #fff;
+    margin-top: 0;
+    align-items: center;
+    display: flex;
+    gap:400px;
+   
+}
+nav div{
+   font-weight: 600;
+   font-size: 30px;
+   font-style:inherit;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content:flex-start;
+    padding-left: 20px;
+    gap: 50px;
+    align-content: center;
+    padding-top: 15px ;
+    
+    justify-content: center; }
+
+
+nav ul li:hover{
+    border: 3px solid #fff;
+    border-radius: 5px;
+    background-color:blue;
+    padding: 3px;
+}
+nav ul  a{
+    color: #fff;
+  
+    text-decoration: none;
+} 
+.payment-section {
+    display: flex;
+    flex-wrap: wrap;  /* Allow the items to wrap onto new lines */
+    justify-content: space-around;  /* Distribute items evenly with space between */
+    gap: 20px;  /* Add spacing between the items */
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.acc{
+    /* border: 2px solid black; */
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+}
+.acc img{
+    height: inherit;
+    width: inherit;
+    border-radius: 5px;
+}
+/* .acc1{background-image: url('../static/css/images/pay\ to\ phone.webp');
+background-size: ;}
+.acc2{background-image: url('../static/css/images/pay\ to\ bank.webp');}
+.acc3{background-image: url('../static/css/images/pay\ with\ card.webp');} */
+.sub-payment{
+height: 90vh;
+background-image: url('../static/css/images/coins.webp');
+
+background-repeat: no-repeat;
+background-size: cover;
+}
+.sub-payment1{
+    margin-left: 50%;
+    /* border: 3px solid white; */
+    border-radius: 5px;
+    background-color: rgba(8, 7, 7,0.2);
+    width: 500px;
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+.sub-payment1 div{ display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: inherit;;
+
+}
+.sub-payment1 div label{
+    font-weight: 600;
+    font-size: 20px;
+
+}
+.sub-payment1 h2{text-align: center;
+  }
+
+.btn3{
+    text-align: center;
+    padding: 5px;
+    background-color: rgba(13, 13, 253,0.4);
+    color: #fff;
+    font-weight: 600;
+}
+.btn3:hover{color: red;
+border:2px solid #fff;}
+#div{
+    margin-left: 50%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+body {
+    font-family: Arial, sans-serif;
+    /* padding: 20px; */
+}
+
+</style>
+</head>
+<body>
+    <nav><div>ALPHA-BANK</div>
+        <ul>
+            <li><a href="1">Home</a></li>
+            <li><a href="2">Create-Account</a></li>
+            <li><a href="3">Deposite</a></li>
+            <li><a href="4">Payments</a></li>
+          
+            <li><a href="5">Pin-Generation</a></li>
+              <li><a href="6">About</a></li>
+        </ul>
+        
+    </nav>
+
+
+
+<section class="sub-payment">
+
+        
+  <section class="payment-section">
+            <!-- Payment method selection -->
+            <button type="button" class="acc acc1" onclick="showBankTransferForm()"><img src="../static/css/images/pay to bank.webp" alt=""></button>
+            <button type="button" class="acc acc2" onclick="showPhoneTransferForm()"><img src="../static/css/images/pay to phone.webp" alt=""></button>
+            <button  class="acc acc3"><img src="../static/css/images/pay with card.webp" alt=""></button>
+    </section>
+
+    <section class="sub-payment1" id="sub-payment-bank" style="display: none;">
+        <h2>Money Transfer to Bank Account</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Bank to Bank Transfer Form -->
+        <input type="hidden" name="payment_method" value="acc1">
+
+            <div><label for="">Sender Account Number:</label>
+                <input type="text" name="sender_account_no" required></div> <br>
+
+            <div><label for="">Recipient Account Number:</label>
+                <input type="text" name="recipient_account_no" required></div><br>
+
+          <div>  <label for="">Amount:</label>
+            <input type="number" name="amount" required></div><br>
+        <div>  <label for="">PIN:</label>
+                <input type="number" name="pin_no1" required></div><br>
+            
+           
+       
+        <button type="submit" class="btn3">Transfer Money</button>
+    </form>
+   
+</section>
+
+<section class="sub-payment1" id="sub-payment-phone" style="display: none;">
+    <h2>Money Transfer to Phone Number</h2>
+<form method="POST">
+    {% csrf_token %}
+    <!-- Bank to Bank Transfer Form -->
+    <input type="hidden" name="payment_method" value="acc2">
+       <div> <label for="">Sender Account Number:</label>
+        <input type="text" name="sender_account_no" required></div><br>
+
+        <div><label for="">Recipient Phone Number:</label>
+            <input type="number" name="recipient_phone_no" required></div><br>
+
+       <div> <label for="">Amount:</label>
+        <input type="number" name="amount" required></div><br>
+
+        <div>  <label for="">PIN:</label>
+            <input type="number" name="pin_no2" required></div><br>
+       
+   
+    <button type="submit" class="btn3">Transfer Money</button>
+</form>
+</section>
+<div  id="messageDiv">
+    {% if message %}
+    <div id="div">
+<p>{{ message }}</p>
+<p>{{ message1 }}</p>
+<p>{{ message2 }}</p>
+</div>
+{% endif %}
+</div>
+
+    
+<script>
+        function showBankTransferForm() {
+            document.getElementById('sub-payment-bank').style.display = 'block';
+            document.getElementById('sub-payment-phone').style.display = 'none';
+        }
+
+        function showPhoneTransferForm() {
+            document.getElementById('sub-payment-phone').style.display = 'block';
+            document.getElementById('sub-payment-bank').style.display = 'none';
+        }
+         // div to disappear after 5 seconds
+        setTimeout(function() {
+        document.getElementById('messageDiv').style.display = 'none';
+    }, 5000); 
+    </script>
+</section>
+
+
+
+</body>
+</html>

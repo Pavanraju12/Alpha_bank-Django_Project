@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA-BANK</title>
+    <link rel="stylesheet" href="{% static 'css/bank.css' %}">
+
+</head>
+<body>
+
+    <nav><div>ALPHA-BANK</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="2">Create-Account</a></li>
+            <li><a href="3">Deposite</a></li>
+            <li><a href="4">Payments</a></li>
+          
+            <li><a href="5">Pin-Generation</a></li>
+              <li><a href="6">About</a></li>
+        </ul>
+        
+    </nav>
+    <marquee behavior="alternate" direction="left" id="marquee">Well Come to AlPHA-BANK <span style="padding-left: 300px ;"> Well Come to AlPHA-BANK </span> <span style="padding-left: 300px ;"> Well Come to AlPHA-BANK </span></marquee>
+
+   
+<main >
+    <section id="main">
+        <div>
+        <h1>Welcome To AlPHA-BANK </h1> <br> 
+        <h1>Do your safe <br>and secure Transactions</h1>
+        </div>
+        
+        <aside><article><img src="{% static 'css/images/bank.webp' %}" alt=""></article>
+            <img src="{% static 'css/images/atm.webp' %}" alt="Your Image"></aside>
+  
+</section>
+
+    <!-- <div id="welcome-box"> <h1>Welcome To AlPHA-BANK </h1></div>
+    1. New Account
+    2. Existing Account
+    </div> -->
+    <section class="sub_section">
+        
+        <button class="btn"><a href="2">New User</a></button>
+        <div class="options">
+            <h3>Existing User</h3>
+            <button class="btn"><a href="3">Deposite Amount</a></button>
+            <button class="btn"><a href="4">Payments</a></button>
+        </div>
+
+    </section>
+</main>
+
+
+
+
+</body>
+
+</html>

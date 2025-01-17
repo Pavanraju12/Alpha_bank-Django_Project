@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA-BANK</title>
+    <style>
+        *{
+   /* margin: 0; */
+   margin-top: 0;
+   margin-left: 0;
+   margin-right: 0;
+   padding: 0;
+}
+.nav{
+   background-color: black;
+   margin: 0;
+   height: 10vh;
+   width: 100%;
+   color: #fff;
+   margin-top: 0;
+   align-items: center;
+   display: flex;
+   gap:400px;
+  
+}
+nav div{
+  font-weight: 600;
+  font-size: 30px;
+  font-style:inherit;
+}
+nav ul{
+   list-style: none;
+   display: flex;
+   justify-content:flex-start;
+   padding-left: 20px;
+   gap: 50px;
+   align-content: center;
+   padding-top: 15px ;
+   
+   justify-content: center; }
+
+
+nav ul li:hover{
+   border: 3px solid #fff;
+   border-radius: 5px;
+   background-color:blue;
+   padding: 3px;
+}
+nav ul  a{
+   color: #fff;
+ 
+   text-decoration: none;
+} 
+
+body {
+    font-family: Arial, sans-serif;
+    /* padding: 20px; */
+}
+
+.aboutnav {
+    margin-bottom: 20px;
+    background-color: rgba(239, 21, 21, 0.3);
+    height: 8vh;
+    margin-top: 0;
+   align-items: center;
+
+   display: flex;
+   padding-left: 30%;
+   /* gap:400px; */
+}
+.aboutnav h2{
+   padding-right: 10px;
+   color: #131212;
+   padding-top: 20px;
+}
+
+.aboutnav form {
+    display: flex;
+    align-items: center;
+    
+    
+    /* background-color: rgba(200, 37, 37, 0.2); */
+}
+
+.aboutnav input {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 400px;
+    border-radius: 10px;
+}
+.aboutnav input:hover{
+   background-color: rgba(122, 106, 68, 0.3);
+  
+   border: #fff 3px solid;
+
+}
+.aboutnav button:hover{
+  border: #fff 3px solid;
+}
+
+.aboutnav button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+
+    background-color: rgba(6, 74, 246, 0.3);
+   border-radius: 5px;
+}
+
+
+.account-details {
+    /* margin-top: 20px; */
+    margin-left: 40%;
+    /* border: 3px solid black; */
+    
+
+}
+.sub-account-details{
+   border: 3px solid black;
+   padding: 20px;
+}
+
+.account-details img {
+    margin-top: 10px;
+}
+.aboutdiv{
+   display: flex;
+   align-items: center;
+   height: 90vh;
+   
+   /* text-align: center; */
+}
+
+</style>
+</head>
+<body>
+    <nav class="nav"><div>ALPHA-BANK</div>
+        <ul>
+            <li><a href="1">Home</a></li>
+            <li><a href="2">Create-Account</a></li>
+            <li><a href="3">Deposite</a></li>
+            <li><a href="4">Payments</a></li>
+          
+            <li><a href="5">Pin-Generation</a></li>
+              <li><a href="6">About</a></li>
+        </ul>
+        
+    </nav>
+     <!-- Navigation with search form -->
+     <nav class="aboutnav">
+      <h2>Display Details of Account Holder:</h2>
+      <br>
+      <form method="GET" action="">
+          <input type="text" name="account_no" placeholder="Enter Account Number" required>
+          <button type="submit">Search</button>
+      </form>
+  </nav>
+
+  <!-- Account details display section -->
+   <div class="aboutdiv">
+  <div class="account-details">
+      {% if account_details %}
+      <div class="sub-account-details">
+          <h2>Account Details</h2>
+          <p><strong>Account Holder:</strong> {{ account_details.first_name }} {{ account_details.last_name }}</p>
+          <p><strong>Account Number:</strong> {{ account_details.account_no }}</p>
+          <p><strong>Balance:</strong> {{ account_details.balance }}</p>
+          <p><strong>Email:</strong> {{ account_details.email_id }}</p>
+          <p><strong>Phone Number:</strong> {{ account_details.phone }}</p>
+          <p><strong>Address:</strong> {{ account_details.address }}</p>
+          <img src="{{ account_details.image.url }}" alt="Account Holder Image" width="150">
+         </div>
+      {% elif account_details is not None %}
+          <p>No account found with that account number.</p>
+      {% endif %}
+  </div>
+  </div>
+</body>
+</html>

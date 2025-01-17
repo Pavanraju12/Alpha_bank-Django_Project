@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALPHA-BANK</title>
+   
+    
+    <style>
+        *{
+    /* margin: 0; */
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+
+body{
+    background : linear-gradient(to top ,  rgba(253, 6, 232, 0.3),rgba(9, 249, 249,0.4),rgba(3, 3, 3,0.4));
+    font-family: Arial, sans-serif;
+    /* padding: 20px; */
+}
+nav{
+    background-color: black;
+    margin: 0;
+    height: 10vh;
+    width: 100%;
+    color: #fff;
+    margin-top: 0;
+    align-items: center;
+    display: flex;
+    gap:400px;
+   
+}
+nav div{
+   font-weight: 600;
+   font-size: 30px;
+   font-style:inherit;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content:flex-start;
+    padding-left: 20px;
+    gap: 50px;
+    align-content: center;
+    padding-top: 15px ;
+    
+    justify-content: center; }
+
+
+nav ul li:hover{
+    border: 3px solid #fff;
+    border-radius: 5px;
+    background-color:blue;
+    padding: 3px;
+}
+nav ul  a{
+    color: #fff;
+  
+    text-decoration: none;
+} 
+h1{
+    background-color: antiquewhite;
+}
+    main{
+        margin-top: 10px;
+        text-align: center;
+      
+        height: 100%;}
+
+
+        .create-sec{
+            display: inline-block;
+
+            
+            text-align: justify;
+            align-items: flex-start;
+            border: 2px solid black;
+            padding-left: 5px;
+            background-color:rgba(8, 8, 8,0.3);
+             border-radius: 20px ;
+             /* height: 110vh; */
+             padding: 10px;
+
+
+            
+        }
+        .create-sec form{
+           gap: 40px;
+            
+           
+          
+
+        }
+        .create-sec form label{
+            width: 150px;
+           
+            color: #050505;
+            font-weight: 800;
+            padding-top: 5px;
+            font-size: 18px;
+            
+            
+
+
+        }
+        .create-sec form input{
+            width: 60%;
+            /* position: absolute; */
+
+            margin-right: 10px;
+           
+            height: 5vh;
+           
+           
+            background-color: rgb(246, 251, 252);
+            border-radius: 10px;
+            
+        }
+        .create-sec form p{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+        }
+        .btn1{ text-align: center;
+            margin-left: 36%;
+            background-color: blue;
+            height:5vh;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+
+
+        }
+        .btn2 a{ color: #fff;
+            text-decoration: none;
+            /* margin-left: 10%; */
+
+        }
+
+       
+    </style>
+</head>
+<body>
+    <nav><div>ALPHA-BANK</div>
+        <ul>
+            <li><a href="1">Home</a></li>
+            <li><a href="2">Create-Account</a></li>
+            <li><a href="3">Deposite</a></li>
+            <li><a href="4">Payments</a></li>
+          
+            <li><a href="5">Pin-Generation</a></li>
+              <li><a href="6">About</a></li>
+        </ul>
+        
+    </nav>
+<main>
+    <h1>Create New Bank Account</h1>
+    <section class="create-sec">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <p><strong><label for="">First Name:</label></strong>{{ form.first_name }}</p>
+        <p><strong><label for="">Last Name:</label></strong>{{ form.last_name }}</p>
+        <p><strong><label for="">Phone number:</label></strong>{{ form.phone }}</p>
+        <p><label for="">Date of Birth:</label>{{ form.DOB }}</p>
+        <p><label for="">Email ID:</label>{{ form.email_id }}</p>
+        <p><label for="">Adress:</label>{{ form.address }}</p>
+        <p><label for="">Father Name:</label>{{ form.father_name }}</p>
+        <p><label for="">Mother Name:</label>{{ form.mother_name }}</p>
+        <p><label for="">Gender:</label>{{ form.gender }}</p>
+        <p><label for="">Pin Code:</label>{{ form.pin_code }}</p>
+        <p><label for="">Image:</label>{{ form.image }}</p>
+        <p><label for="">Deposite Amount:</label>{{ form.balance }}</p>
+
+        <!-- The hidden fields (account_no, balance, and pin) are automatically rendered with type="hidden" -->
+        {{ form.account_no }}
+        <!-- {{ form.balance }} -->
+        {{ form.pin }}
+
+        <button type="submit" class="btn btn1"> Submit Form</button>
+        </form>
+    </section><br><br>
+    <button type="submit" class="btn2 btn1"><a href="5">Pin Generation</a></button>
+</main>
+</body>
+</html>
